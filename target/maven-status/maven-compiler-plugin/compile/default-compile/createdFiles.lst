@@ -1,0 +1,11 @@
+com/testjsf2/testjsf2/Beans/UtilisateurBean.class
+com/testjsf2/testjsf2/Repositories/UtilisateurDao.class
+com/testjsf2/testjsf2/ContextInit.class
+com/testjsf2/testjsf2/Entities/Utilisateur.class
+com/testjsf2/testjsf2/Beans/LazyUtilisateurDataModel.class
+com/testjsf2/testjsf2/RepositoriesImpl/UtilisateurDaoImpl.class
+com/testjsf2/testjsf2/testEx.class
+com/testjsf2/testjsf2/Configurations.class
+com/testjsf2/testjsf2/Beans/BonjourBean.class
+com/testjsf2/testjsf2/ServicesImpl/UtilisateurServiceImpl.class
+com/testjsf2/testjsf2/Services/UtilisateurService.class

@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Utilisateur</title>
+        <link href="https://www.primefaces.org/showcase/javax.faces.resource/css/primeflex.css.xhtml?ln=showcase" rel="stylesheet"/>
+    </h:head>
+    <h:body > 
+        <div class="row">
+            <button class="btn-danger">ssalut</button>
+        </div>
+        <div class="ui-g"> 
+            <div class="ui-g-3"></div>
+              <div class="ui-g-5"> 
+                    
+            <p:panel id="formUser" header="Utilisateur" toggleable="true" toggleSpeed="500" closeSpeed="500"  >
+                <h:form id="formulaire" >
+                    <p:messages globalOnly="true"  id="messageId"  closable="true"/>
+                    <br/> 
+                    <div class="ui-g">
+                        <div class="ui-g-4">
+                <p:outputLabel for="email" value="Email : "/>
+                </div>
+                <div class="ui-g-4">
+                    <p:inputText id="email" value="#{utilisateurBean.utilisateur.email}" required="true" />
+                </div>
+                <div class="ui-g-12">
+                <p:message for="email" />   
+                </div>
+                 <div class="ui-g-4"> 
+                <p:outputLabel value="Nom : "/>
+                </div> 
+                 <div class="ui-g-4"> 
+                <p:inputText value="#{utilisateurBean.utilisateur.nom}" id="nom"/>
+                </div>
+                <div class="ui-g-12">
+                <p:message for="nom"/>   
+                </div> 
+                 <div class="ui-g-4">  
+                 <p:outputLabel value="Passe : "/> 
+                 </div> 
+                  <div class="ui-g-4">        
+                 <p:password  value="#{utilisateurBean.utilisateur.motDePasse}" feedback="true" inline="true" 
+                              promptLabel="médiotre" weakLabel="mauvais" goodLabel="bien" strongLabel="fort" id="passe"/>
+                 </div>
+                 <div class="ui-g-12">
+                 <p:message for="passe"/>   
+                 </div>
+                        <div class="ui-g-12" align="center">
+                            <p:commandButton action="#{utilisateurBean.adduser()}" value="Sauvegarder" update="formulaire" class="btn-danger"/>
+                  
+                <p:spacer width="20"/> 
+                <p:commandButton action="#{utilisateurBean.resetForm()}" value="Annuler" update="formulaire" style="color: white; background-color: cornflowerblue"/>
+                  </div>
+                        </div>  
+                </h:form> 
+            </p:panel>
+                       
+                 
+             </div>
+            <div class="ui-g-2"></div>
+        <div class="ui-g-3"></div>
+            <div class="ui-g-6">
+        <p:growl showDetail="true"  id="messageId1" />
+        <h:form id="tb_users"> 
+        <p:dataTable paginator="true" rows="10" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" rowsPerPageTemplate="5,10,15" lazy="true" var="user" value="#{utilisateurBean.utilisateurList()}" selectionMode="single"  selection="#{utilisateurBean.utilisateur1}"  
+                     rowKey="#{user.idUtilisateur}"  widgetVar="userTable"  filteredValue="#{utilisateurBean.listeFiltre}" emptyMessage="no">
+            <f:facet name="header">Liste des utilisateurs <p:spacer width="20"/> 
+            <p:commandButton action="#{utilisateurBean.deleteUSer()}" value="Supprimer" update="formulaire" style="color: white; background-color: lightcoral"/>
+            <p:outputPanel>
+                
+            <p:inputText id="globalFilter" onkeyup="PF(userTable).filter()"/>
+            </p:outputPanel>
+            </f:facet>
+            <p:ajax event="rowSelect" listener="#{utilisateurBean.UserOnRowSelect}" update="formulaire"/>
+            <p:column filterBy="#{user.email}" headerText="Email"  sortBy="#{user.email}" filterMatchMode="contains">
+                
+                <h:outputText value="#{user.email}"/>
+            </p:column>
+            <p:column headerText="Nom" filterBy="#{user.nom}" sortBy="#{user.nom}">
+                <h:outputText value="#{user.nom}"/>
+            </p:column>
+            <p:column headerText="Mot de passe" filterBy="#{user.motDePasse}" sortBy="#{user.motDePasse}">
+                <h:outputText value="#{user.motDePasse}"/>
+            </p:column>
+        </p:dataTable>
+            </h:form>
+         </div>
+        </div>
+        <!-- <table border="0"> 
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Passe</th>
+                    <th>Modifier</th>
+                     <th>Supprimer</th>
+                </tr>
+        <ui:repeat value="#{utilisateurBean.utilisateurList()}" var="user">
+            
+            <tr>
+                <td>#{user.nom}</td>
+                    <td>#{user.email}</td>
+                    <td>#{user.motDePasse}</td>
+                    <td><p:commandButton value="Modifier"/></td>
+                     <td><p:commandButton value="Supprimer"/></td>
+                </tr>
+            
+        </ui:repeat>  
+         </table> --> 
+    </h:body>
+</html>
+
